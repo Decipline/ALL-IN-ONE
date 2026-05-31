@@ -1,225 +1,208 @@
-# Daraz Clone - E-Commerce Platform
+<p align="center">
+  <img src="logo.svg" width="200px" align="center" alt="Zod logo" />
+  <h1 align="center">Zod</h1>
+  <p align="center">
+    TypeScript-first schema validation with static type inference
+    <br/>
+    by <a href="https://x.com/colinhacks">@colinhacks</a>
+  </p>
+</p>
+<br/>
 
-A production-grade, pixel-perfect clone of Daraz Nepal (daraz.com.np) built with Next.js 15, TypeScript, Tailwind CSS, and Supabase.
+<p align="center">
+<a href="https://github.com/colinhacks/zod/actions?query=branch%3Amaster"><img src="https://github.com/colinhacks/zod/actions/workflows/test.yml/badge.svg?event=push&branch=master" alt="Zod CI status" /></a>
+<a href="https://opensource.org/licenses/MIT" rel="nofollow"><img src="https://img.shields.io/github/license/colinhacks/zod" alt="License"></a>
+<a href="https://www.npmjs.com/package/zod" rel="nofollow"><img src="https://img.shields.io/npm/dw/zod.svg" alt="npm"></a>
+<a href="https://discord.gg/KaSRdyX2vc" rel="nofollow"><img src="https://img.shields.io/discord/893487829802418277?label=Discord&logo=discord&logoColor=white" alt="discord server"></a>
+<a href="https://github.com/colinhacks/zod" rel="nofollow"><img src="https://img.shields.io/github/stars/colinhacks/zod" alt="stars"></a>
+</p>
 
-## Tech Stack
+<div align="center">
+  <a href="https://zod.dev/api">Docs</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://discord.gg/RcG33DQJdf">Discord</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://twitter.com/colinhacks">𝕏</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://bsky.app/profile/zod.dev">Bluesky</a>
+  <br />
+</div>
 
-- **Frontend**: Next.js 15 (App Router) + TypeScript + Tailwind CSS + shadcn/ui
-- **Backend**: PostgreSQL + PostgREST (via Supabase)
-- **Authentication**: Supabase Auth (Email + Google + Phone OTP)
-- **State Management**: Zustand + TanStack Query
-- **Icons**: Lucide React
-- **Styling**: Tailwind CSS with custom Daraz theme
+<br/>
+<br/>
+
+<h2 align="center">Featured sponsor: Jazz</h2>
+
+<div align="center">
+  <a href="https://jazz.tools/?utm_source=zod">
+    <picture width="85%" >
+      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/garden-co/jazz/938f6767e46cdfded60e50d99bf3b533f4809c68/homepage/homepage/public/Zod%20sponsor%20message.png">
+      <img alt="jazz logo" src="https://raw.githubusercontent.com/garden-co/jazz/938f6767e46cdfded60e50d99bf3b533f4809c68/homepage/homepage/public/Zod%20sponsor%20message.png" width="85%">
+    </picture>
+  </a>
+  <br/>
+  <p><sub>Learn more about <a target="_blank" rel="noopener noreferrer" href="mailto:sponsorship@colinhacks.com">featured sponsorships</a></sub></p>
+</div>
+
+<br/>
+<br/>
+<br/>
+
+### [Read the docs →](https://zod.dev/api)
+
+<br/>
+<br/>
+
+## What is Zod?
+
+Zod is a TypeScript-first validation library. Define a schema and parse some data with it. You'll get back a strongly typed, validated result.
+
+```ts
+import * as z from "zod/v4";
+
+const User = z.object({
+  name: z.string(),
+});
+
+// some untrusted data...
+const input = {
+  /* stuff */
+};
+
+// the parsed result is validated and type safe!
+const data = User.parse(input);
+
+// so you can use it with confidence :)
+console.log(data.name);
+```
+
+<br/>
 
 ## Features
 
-### Core Features
-- **Homepage**: Hero slider with auto-rotation, Flash Sale countdown, Categories grid, Product carousels, Top Brands
-- **Search**: Global search with autocomplete and suggestions
-- **Product Listing**: Infinite scroll, Advanced filters (price, brand, rating, color, size, discount), Sort options
-- **Product Detail**: Image gallery with zoom, Color/size variants, Price & discount info, Add to Cart & Buy Now, Description, Specifications, Reviews
-- **Cart & Wishlist**: Persistent cart with localStorage, Voucher/discount code input
-- **Checkout Flow**: Address selection, Delivery options, Payment methods (COD + online payment)
-- **User Features**: Login/Register with OTP, My Account, Orders, Wishlist, Addresses, Reviews
+- Zero external dependencies
+- Works in Node.js and all modern browsers
+- Tiny: `2kb` core bundle (gzipped)
+- Immutable API: methods return a new instance
+- Concise interface
+- Works with TypeScript and plain JS
+- Built-in JSON Schema conversion
+- Extensive ecosystem
 
-### Daraz-like Features
-- Flash Sale timer with countdown
-- "Daraz Mall" badge on verified products
-- Free shipping / Cash on Delivery badges
-- Rating & Review system with star ratings
-- Order tracking status
-- Mobile-first responsive design
+<br/>
 
-## Project Structure
+## Installation
 
-```
-daraz-clone/
-├── app/
-│   ├── (auth)/           # Authentication pages
-│   ├── (shop)/           # Shop pages (cart, checkout, product)
-│   ├── account/          # User account pages
-│   ├── categories/       # Category pages
-│   ├── globals.css      # Global styles
-│   ├── layout.tsx       # Root layout
-│   └── page.tsx         # Homepage
-├── components/
-│   ├── auth/            # Authentication components
-│   ├── checkout/        # Checkout components
-│   ├── layout/          # Header, Footer, Navigation
-│   ├── product/         # Product components
-│   ├── ui/              # shadcn/ui components
-│   └── home/            # Homepage components
-├── lib/
-│   ├── supabase/        # Supabase client & types
-│   ├── store/           # Zustand stores
-│   ├── hooks/           # Custom hooks
-│   └── utils.ts         # Utility functions
-├── types/               # TypeScript types
-├── supabase/
-│   ├── migrations/      # Database migrations
-│   └── seed.sql         # Seed data
-└── public/              # Static assets
+```sh
+npm install zod
 ```
 
-## Setup Instructions
+<br/>
 
-### Prerequisites
-- Node.js 18+ and npm
-- A Supabase account (free tier works)
+## Basic usage
 
-### 1. Create Supabase Project
+Before you can do anything else, you need to define a schema. For the purposes of this guide, we'll use a simple object schema.
 
-1. Go to [supabase.com](https://supabase.com) and create a new project
-2. Go to Project Settings > API to get your credentials
-3. Run the SQL migration in the Supabase SQL Editor:
-   - Open `supabase/migrations/001_initial_schema.sql`
-   - Copy and paste the SQL into the Supabase SQL Editor
-   - Run the script to create all tables
-4. Run the seed data:
-   - Open `supabase/seed.sql`
-   - Copy and paste into the SQL Editor
-   - Run to populate sample data
+```ts
+import * as z from "zod/v4";
 
-### 2. Install Dependencies
-
-```bash
-npm install
+const Player = z.object({
+  username: z.string(),
+  xp: z.number(),
+});
 ```
 
-### 3. Configure Environment Variables
+### Parsing data
 
-Create a `.env.local` file in the root directory:
+Given any Zod schema, use `.parse` to validate an input. If it's valid, Zod returns a strongly-typed _deep clone_ of the input.
 
-```env
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-NEXT_PUBLIC_APP_URL=http://localhost:3000
+```ts
+Player.parse({ username: "billie", xp: 100 });
+// => returns { username: "billie", xp: 100 }
 ```
 
-Get these values from your Supabase project settings.
+**Note** — If your schema uses certain asynchronous APIs like `async` [refinements](#refine) or [transforms](#transform), you'll need to use the `.parseAsync()` method instead.
 
-### 4. Run Development Server
+```ts
+const schema = z.string().refine(async (val) => val.length <= 8);
 
-```bash
-npm run dev
+await schema.parseAsync("hello");
+// => "hello"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+### Handling errors
 
-### 5. Build for Production
+When validation fails, the `.parse()` method will throw a `ZodError` instance with granular information about the validation issues.
 
-```bash
-npm run build
-npm start
+```ts
+try {
+  Player.parse({ username: 42, xp: "100" });
+} catch (err) {
+  if (err instanceof z.ZodError) {
+    err.issues;
+    /* [
+      {
+        expected: 'string',
+        code: 'invalid_type',
+        path: [ 'username' ],
+        message: 'Invalid input: expected string'
+      },
+      {
+        expected: 'number',
+        code: 'invalid_type',
+        path: [ 'xp' ],
+        message: 'Invalid input: expected number'
+      }
+    ] */
+  }
+}
 ```
 
-## Database Schema
+To avoid a `try/catch` block, you can use the `.safeParse()` method to get back a plain result object containing either the successfully parsed data or a `ZodError`. The result type is a [discriminated union](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#discriminated-unions), so you can handle both cases conveniently.
 
-The project uses PostgreSQL with the following main tables:
+```ts
+const result = Player.safeParse({ username: 42, xp: "100" });
+if (!result.success) {
+  result.error; // ZodError instance
+} else {
+  result.data; // { username: string; xp: number }
+}
+```
 
-- **profiles**: User profiles (extends auth.users)
-- **categories**: Product categories with hierarchy
-- **brands**: Product brands
-- **products**: Products with variants, specifications, pricing
-- **product_variants**: Product color/size/other variants
-- **addresses**: User shipping addresses
-- **orders**: Customer orders
-- **order_items**: Items in each order
-- **cart_items**: Shopping cart items
-- **wishlist_items**: User wishlist
-- **reviews**: Product reviews
-- **banners**: Homepage banners
+**Note** — If your schema uses certain asynchronous APIs like `async` [refinements](#refine) or [transforms](#transform), you'll need to use the `.safeParseAsync()` method instead.
 
-All tables have Row Level Security (RLS) enabled for secure data access.
+```ts
+const schema = z.string().refine(async (val) => val.length <= 8);
 
-## Key Components
+await schema.safeParseAsync("hello");
+// => { success: true; data: "hello" }
+```
 
-### State Management
-- **cartStore**: Manages shopping cart with localStorage persistence
-- **wishlistStore**: Manages wishlist with localStorage persistence
-- **userStore**: Manages user authentication state
+### Inferring types
 
-### UI Components
-- **Header**: Responsive header with search, cart, wishlist, user menu
-- **Footer**: Multi-column footer with links and app download
-- **ProductCard**: Product card with image, price, rating, add to cart
-- **HeroSlider**: Auto-rotating hero banner slider
-- **FlashSale**: Flash sale section with countdown timer
-- **CategoriesGrid**: Category grid with icons and images
+Zod infers a static type from your schema definitions. You can extract this type with the `z.infer<>` utility and use it however you like.
 
-## Authentication
+```ts
+const Player = z.object({
+  username: z.string(),
+  xp: z.number(),
+});
 
-The project uses Supabase Auth with support for:
-- Email/Password authentication
-- Google OAuth (configured in Supabase)
-- Phone OTP (configured in Supabase)
+// extract the inferred type
+type Player = z.infer<typeof Player>;
 
-Authentication pages are located in `app/(auth)/`.
+// use it in your code
+const player: Player = { username: "billie", xp: 100 };
+```
 
-## Payment Methods
+In some cases, the input & output types of a schema can diverge. For instance, the `.transform()` API can convert the input from one type to another. In these cases, you can extract the input and output types independently:
 
-- **Cash on Delivery (COD)**: Default payment method for Nepal
-- **Online Payment**: Integration ready for eSewa, Khalti, credit/debit cards
+```ts
+const mySchema = z.string().transform((val) => val.length);
 
-## Deployment
+type MySchemaIn = z.input<typeof mySchema>;
+// => string
 
-### Vercel (Recommended)
-
-1. Push your code to GitHub
-2. Import project in Vercel
-3. Add environment variables in Vercel dashboard
-4. Deploy
-
-### Other Platforms
-
-The project can be deployed to any platform that supports Next.js:
-- Netlify
-- Railway
-- AWS Amplify
-- Digital Ocean App Platform
-
-## Customization
-
-### Colors
-Daraz brand colors are defined in `tailwind.config.ts`:
-- Primary Orange: #f85606
-- Yellow: #ffc400
-- Green: #00bfa5
-- Red: #f5222d
-- Blue: #1890ff
-
-### Images
-Currently using Unsplash placeholder images. Replace with your own product images by:
-1. Upload images to Supabase Storage
-2. Update image URLs in the database
-3. Or use a CDN like Cloudinary
-
-## Performance Optimization
-
-- Next.js Image optimization for all images
-- Lazy loading for product carousels
-- Code splitting with Next.js App Router
-- State management with Zustand for minimal re-renders
-- localStorage for cart/wishlist persistence
-
-## Future Enhancements
-
-- [ ] Real-time search with Algolia or Meilisearch
-- [ ] Advanced analytics with Google Analytics
-- [ ] Email notifications for orders
-- [ ] SMS notifications via Twilio
-- [ ] Admin dashboard for product management
-- [ ] Multi-vendor support
-- [ ] Chat support integration
-
-## License
-
-This project is for educational purposes only. It is a clone of Daraz Nepal for learning purposes.
-
-## Support
-
-For issues or questions, please open an issue on GitHub.
-
----
-
-Built with ❤️ using Next.js 15, TypeScript, and Supabase
+type MySchemaOut = z.output<typeof mySchema>; // equivalent to z.infer<typeof mySchema>
+// number
+```
